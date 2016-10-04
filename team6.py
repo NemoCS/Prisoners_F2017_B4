@@ -5,6 +5,7 @@
 #     strategy_description: a string
 #     move: A function that returns 'c' or 'b'
 ####
+#Justin Merkel, Jack
 
 team_name = 'TotalLegit' # Only 10 chars displayed.
 strategy_name = 'Win'
