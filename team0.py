@@ -13,16 +13,10 @@ strategy_name = 'TOP SECRET'
 strategy_description = 'How does this strategy decide?'
     
 def move(my_history, their_history, my_score, their_score):
-    if len(their_history)<1:
-        return 'c'
-    elif their_history[:1] == 'b':
-        return 'b'
-    elif their_history[:3] == 'ccc' and my_history[:3] == 'ccc':
-        return 'b'
-    elif their_history[:1] == 'c':
-        return 'c'
-    else:
-        return 'c'
+
+
+            
+            
 
     
 def test_move(my_history, their_history, my_score, their_score, result):
