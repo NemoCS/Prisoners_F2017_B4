@@ -1,3 +1,5 @@
+#TEAM 1 
+#NAMES: TILER AND SCOTT
 ####
 # Each team's file must define four tokens:
 #     team_name: a string
@@ -6,11 +8,20 @@
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+import random
+
+
+team_name = 'SO LIT' # Only 10 chars displayed.
+strategy_name = 'Chill but agressive'
+strategy_description = 'nice'
     
 def move(my_history, their_history, my_score, their_score):
+    if  'b' in their_history:
+        return 'b'
+    elif 'bcbcbc' in their_history[-6:]:   
+        return 'b'
+    else:
+        return 'c'
     ''' Arguments accepted: my_history, their_history are strings.
     my_score, their_score are ints.
     
