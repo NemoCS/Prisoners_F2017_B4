@@ -1,0 +1,1630 @@
+--------------------------------------------------------------------------------
+Section 0 - Line up
+--------------------------------------------------------------------------------
+Player 0 (P0): Team0: REM, TOP SECRET
+        WATCH AND SEE
+Player 1 (P1): SO LIT, Chill but agressive
+        nice
+Player 2 (P2): haramBAEs, build a wall
+        idek
+Player 3 (P3): hmm, Only Affective 10% of the Time Strategy
+        collude until betrayed
+Player 4 (P4): Trumpence, making America great again
+        Be cooperative in the beginning; if betrayed two times, betray back; if 
+        betrayed again, keep betraying
+Player 5 (P5): Fünf, We tried
+        How does this strategy decide?
+Player 6 (P6): TotalLegit, Win
+        PBbt Ill never tell
+Player 7 (P7): Harambe 7, Winning Strategy
+        Based off of opponents patterns.
+Player 8 (P8): Magnifico8, Do what chu gotta do
+        First round - collude. If they collude in last 2 rounds, collude. If the
+        y betray in last 2 rounds, betray. If alternating, betray. If other, col
+        lude.
+Player 9 (P9): 09 Bagels, No Forgiveness
+        You will regret your betrayal. The guilty pay the price.
+--------------------------------------------------------------------------------
+Section 1 - Player vs. Player
+--------------------------------------------------------------------------------
+Each column shows pts/round earned against each other player:
+             P0     P1     P2     P3     P4     P5     P6     P7     P8     P9
+vs. P0 :      0   -247   -249   -248   -250   -241     92   -250   -246   -247
+vs. P1 :   -247      0      0     -2   -251   -247      0   -251      0      0
+vs. P2 :   -242      0      0     -2      0   -245      0   -172      0      0
+vs. P3 :   -248     -2     -2      0   -299   -249     -2   -247     -3     -3
+vs. P4 :   -244   -248     -3   -102      0   -249   -241   -173     -5   -248
+vs. P5 :   -257   -253   -254   -252   -252      0   -254   -261   -254   -253
+vs. P6 :   -489      0      0     -2   -247   -245      0   -483      0      0
+vs. P7 :   -241   -241   -287   -243   -290   -236     88      0   -292   -238
+vs. P8 :   -240      0      0     -3      0   -246      0   -177      0      0
+vs. P9 :   -247      0      0     -3   -251   -247      0   -252      0      0
+TOTAL  :  -2455   -991   -795   -857  -1840  -2205   -317  -2266   -800   -989
+--------------------------------------------------------------------------------
+Section 2 - Leaderboard
+--------------------------------------------------------------------------------
+Average points per round:
+Team name (P#):  Score      with strategy name
+TotalLegit(P6):        -32 points with Win                                     
+haramBAEs (P2):        -80 points with build a wall                            
+Magnifico8(P8):        -80 points with Do what chu gotta do                    
+hmm       (P3):        -86 points with Only Affective 10% of the Time Strategy 
+09 Bagels (P9):        -99 points with No Forgiveness                          
+SO LIT    (P1):       -100 points with Chill but agressive                     
+Trumpence (P4):       -184 points with making America great again              
+Fünf     (P5):       -221 points with We tried                                
+Harambe 7 (P7):       -227 points with Winning Strategy                        
+Team0: REM(P0):       -246 points with TOP SECRET                              
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+team0--------------------------------------------------------------------------------
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'c' or 'b'
+####
+
+#Reid, Eric L, Mike
+
+team_name = 'Team0: REM' # Only 10 chars displayed.
+strategy_name = 'TOP SECRET'
+strategy_description = 'WATCH AND SEE'
+    
+def move(my_history, their_history, my_score, their_score):
+    if len(my_history)==0:
+        return 'c'
+    if len(my_history)==1:
+        return 'c'
+    if len(my_history)==2:
+        return 'b'
+    if len(my_history)==3:
+        return 'c'
+    if len(my_history)==4:
+        return 'b'
+    if their_history[0:5]=='cccbc':
+        return 'c'
+    else:
+        return 'b'
+
+            
+            
+
+    
+def test_move(my_history, their_history, my_score, their_score, result):
+    '''calls move(my_history, their_history, my_score, their_score)
+    from this module. Prints error if return value != result.
+    Returns True or False, dpending on whether result was as expected.
+    '''
+    real_result = move(my_history, their_history, my_score, their_score)
+    if real_result == result:
+        return True
+    else:
+        print("move(" +
+            ", ".join(["'"+my_history+"'", "'"+their_history+"'",
+                       str(my_score), str(their_score)])+
+            ") returned " + "'" + real_result + "'" +
+            " and should have returned '" + result + "'")
+        return False
+
+--------------------------------------------------------------------------------
+team1--------------------------------------------------------------------------------
+#TEAM 1 
+#NAMES: TILER AND SCOTT
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'c' or 'b'
+####
+
+import random
+
+
+team_name = 'SO LIT' # Only 10 chars displayed.
+strategy_name = 'Chill but agressive'
+strategy_description = 'nice'
+    
+def move(my_history, their_history, my_score, their_score):
+    if  'b' in their_history:
+        return 'b'
+    elif 'bcbcbc' in their_history[-6:]:   
+        return 'b'
+    else:
+        return 'c'
+    ''' Arguments accepted: my_history, their_history are strings.
+    my_score, their_score are ints.
+    
+    Make my move.
+    Returns 'c' or 'b'. 
+    '''
+
+    # my_history: a string with one letter (c or b) per round that has been played with this opponent.
+    # their_history: a string of the same length as history, possibly empty. 
+    # The first round between these two players is my_history[0] and their_history[0].
+    # The most recent round is my_history[-1] and their_history[-1].
+    
+    # Analyze my_history and their_history and/or my_score and their_score.
+    # Decide whether to return 'c' or 'b'.
+    
+    return 'c'
+
+    
+def test_move(my_history, their_history, my_score, their_score, result):
+    '''calls move(my_history, their_history, my_score, their_score)
+    from this module. Prints error if return value != result.
+    Returns True or False, dpending on whether result was as expected.
+    '''
+    real_result = move(my_history, their_history, my_score, their_score)
+    if real_result == result:
+        return True
+    else:
+        print("move(" +
+            ", ".join(["'"+my_history+"'", "'"+their_history+"'",
+                       str(my_score), str(their_score)])+
+            ") returned " + "'" + real_result + "'" +
+            " and should have returned '" + result + "'")
+        return False
+
+if __name__ == '__main__':
+     
+    # Test 1: Betray on first move.
+    if test_move(my_history='',
+              their_history='', 
+              my_score=0,
+              their_score=0,
+              result='b'):
+         print 'Test passed'
+     # Test 2: Continue betraying if they collude despite being betrayed.
+    test_move(my_history='bbb',
+              their_history='ccc', 
+              # Note the scores are for testing move().
+              # The history and scores don't need to match unless
+              # that is relevant to the test of move(). Here,
+              # the simulation (if working correctly) would have awarded 
+              # 300 to me and -750 to them. This test will pass if and only if
+              # move('bbb', 'ccc', 0, 0) returns 'b'.
+              my_score=0, 
+              their_score=0,
+              result='b')             --------------------------------------------------------------------------------
+team2--------------------------------------------------------------------------------
+#Eric & Drake
+team_name = 'haramBAEs' # Only 10 chars displayed.
+strategy_name = 'build a wall'
+strategy_description = 'idek'
+    
+def move(my_history, their_history, my_score, their_score):
+    if their_history[-4:] == 'cbcb':
+        return 'b'
+    elif their_history[-4:] == 'bcbc':
+        return 'b'
+    elif their_history[-1:] == 'c':
+        return 'c'
+    elif their_history[-2:] == 'bb':
+        return 'b'
+    else:
+        return'c'
+--------------------------------------------------------------------------------
+team3--------------------------------------------------------------------------------
+# -*- coding: utf-8 -*-
+####Cody and Troy
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'c' or 'b'
+####
+
+team_name = 'hmm' # Only 10 chars displayed.
+strategy_name = 'Only Affective 10% of the Time Strategy'
+strategy_description = 'collude until betrayed'
+    
+def move(my_history, their_history, my_score, their_score):
+    ''' Arguments accepted: my_history, their_history are strings.
+    my_score, their_score are ints.
+    
+    
+
+    # my_history: a string with one letter (c or b) per round that has been played with this opponent.
+    # their_history: a string of the same length as history, possibly empty. 
+    # The first round between these two players is my_history[0] and their_history[0].
+    # The most recent round is my_history[-1] and their_history[-1].
+    
+    # Analyze my_history and their_history and/or my_score and their_score.
+    # Decide whether to return 'c' or 'b'.
+    
+    return 'c'''
+    if their_history[:] == '':
+        return 'c'
+    if their_history[-2:] == 'cc':
+        return 'c'
+    if their_history[-1:] == 'b':
+        return 'b'
+    if their_history[-2:] == 'bc':
+        return 'b'
+       
+    
+    
+
+    
+def test_move(my_history, their_history, my_score, their_score, result):
+    '''calls move(my_history, their_history, my_score, their_score)
+    from this module. Prints error if return value != result.
+    Returns True or False, dpending on whether result was as expected.
+    '''
+    real_result = move(my_history, their_history, my_score, their_score)
+    if real_result == result:
+        return True
+    else:
+        print("move(" +
+            ", ".join(["'"+my_history+"'", "'"+their_history+"'",
+                       str(my_score), str(their_score)])+
+            ") returned " + "'" + real_result + "'" +
+            " and should have returned '" + result + "'")
+        return False
+
+if __name__ == '__main__':
+     
+    # Test 1: Betray on first move.
+    if test_move(my_history='',
+              their_history='', 
+              my_score=0,
+              their_score=0,
+              result='b'):
+         print 'Test passed'
+     # Test 2: Continue betraying if they collude despite being betrayed.
+    test_move(my_history='bbb',
+              their_history='ccc', 
+              # Note the scores are for testing move().
+              # The history and scores don't need to match unless
+              # that is relevant to the test of move(). Here,
+              # the simulation (if working correctly) would have awarded 
+              # 300 to me and -750 to them. This test will pass if and only if
+              # move('bbb', 'ccc', 0, 0) returns 'b'.
+              my_score=0, 
+              their_score=0,
+              result='b')             --------------------------------------------------------------------------------
+team4--------------------------------------------------------------------------------
+team_name = 'Trumpence' # Only 10 chars displayed.
+strategy_name = 'making America great again'
+strategy_description = 'Be cooperative in the beginning; if betrayed two times, betray back; if betrayed again, keep betraying'
+    
+def move(my_history, their_history, my_score, their_score):
+    # my_history: a string with one letter (c or b) per round that has been played with this opponent.
+    # their_history: a string of the same length as history, possibly empty. 
+    # The first round between these two players is my_history[0] and their_history[0].
+    # The most recent round is my_history[-1] and their_history[-1].
+    
+    # Analyze my_history and their_history and/or my_score and their_score.
+    # Decide whether to return 'c' or 'b'.
+    
+    
+    if their_history[-2:] == 'bb':
+        return 'b'
+    elif my_history[-1:] == 'b' and their_history[-2:] == 'bb':
+        return 'b'
+    elif their_history[-1:] == '':
+        return 'b'
+    elif their_history[-5:] == 'bcbcb':
+        return 'b' 
+    else:
+        return 'c'--------------------------------------------------------------------------------
+team5--------------------------------------------------------------------------------
+# -*- coding: utf-8 -*-
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'c' or 'b'
+####
+#Grace Geneser and Seth White
+team_name = 'Fünf' # Only 10 chars displayed.
+strategy_name = 'We tried'
+strategy_description = 'How does this strategy decide?'
+
+def move(my_history, their_history, my_score, their_score):
+    turns = len(my_history)
+    peace = 0
+# if turns == 0:
+# return 'b'
+# if their_history[-1:] == 'c':
+# return 'c'
+    if their_history[-1:] == 'b':
+        return 'b'
+    if their_history[-3:] == 'bbb' and peace == 0:
+        return 'c'
+        peace += 1
+    if peace == 1 and their_history[-3:] == 'bbb':
+        return 'bbb'
+    if peace == 1 and their_history[-1:] == 'c':
+        return 'c'
+    if turns == 10 or 20 or 30:
+        return 'b'
+    if their_history[-6:] == 'cbcbcb':
+        return 'bbbbbb'
+
+# if turns == 1 or 2 or 3:
+# return 'c,c,c'
+# their_c_reaction = their_history[:2]
+# if turns == 4 or 5 or 6:
+# return 'b,b,b'
+# their_b_reaction = their_history[3:5]
+# if their_c_reaction == 'c,c,c':
+# return 'c'
+# if their_b_reaction == 'c,b,b':
+# return 'c'
+# if their_history[-1:] == 'b':
+# return 'b'
+# elif their_history[-1:] == 'c':
+# return 'c'
+    ''' Arguments accepted: my_history, their_history are strings.
+    my_score, their_score are ints.
+    Make my move.
+    Returns 'c' or 'b'.
+    '''
+
+    # my_history: a string with one letter (c or b) per round that has been played with this opponent.
+    # their_history: a string of the same length as history, possibly empty.
+    # The first round between these two players is my_history[0] and their_history[0].
+    # The most recent round is my_history[-1] and their_history[-1].
+
+    # Analyze my_history and their_history and/or my_score and their_score.
+    # Decide whether to return 'c' or 'b'.
+
+ 
+def test_move(my_history, their_history, my_score, their_score, result):
+    '''calls move(my_history, their_history, my_score, their_score)
+    from this module. Prints error if return value != result.
+    Returns True or False, dpending on whether result was as expected.
+    '''
+    real_result = move(my_history, their_history, my_score, their_score)
+    if real_result == result:
+        return True
+    else:
+        print("move(" +
+            ", ".join(["'"+my_history+"'", "'"+their_history+"'",
+                       str(my_score), str(their_score)])+
+            ") returned " + "'" + real_result + "'" +
+            " and should have returned '" + result + "'")
+        return False
+
+if __name__ == '__main__':
+     
+    # Test 1: Betray on first move.
+    if test_move(my_history='',
+              their_history='', 
+              my_score=0,
+              their_score=0,
+              result='b'):
+         print 'Test passed'
+     # Test 2: Continue betraying if they collude despite being betrayed.
+    test_move(my_history='bbb',
+              their_history='ccc', 
+              # Note the scores are for testing move().
+              # The history and scores don't need to match unless
+              # that is relevant to the test of move(). Here,
+              # the simulation (if working correctly) would have awarded 
+              # 300 to me and -750 to them. This test will pass if and only if
+              # move('bbb', 'ccc', 0, 0) returns 'b'.
+              my_score=0, 
+              their_score=0,
+              result='b')             --------------------------------------------------------------------------------
+team6--------------------------------------------------------------------------------
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'c' or 'b'
+####
+#Justin Merkel, Jack
+
+team_name = 'TotalLegit' # Only 10 chars displayed.
+strategy_name = 'Win'
+strategy_description = 'PBbt Ill never tell'
+    
+def move(my_history, their_history, my_score, their_score):
+    if len(my_history)<=2:
+        return 'c'
+    if their_history[0:3]== 'ccb' and len(my_history)==3:
+        return 'b'
+    if their_history[0:4]== 'ccbc' and len(my_history)==4:
+        return 'c'    
+    if their_history[0:5]== 'ccbcb':
+        return 'b'
+    if 'b' in their_history:
+        return 'b'
+    else:
+        return 'c'
+
+    
+def test_move(my_history, their_history, my_score, their_score, result):
+    '''calls move(my_history, their_history, my_score, their_score)
+    from this module. Prints error if return value != result.
+    Returns True or False, dpending on whether result was as expected.
+    '''
+    real_result = move(my_history, their_history, my_score, their_score)
+    if real_result == result:
+        return True
+    else:
+        print("move(" +
+            ", ".join(["'"+my_history+"'", "'"+their_history+"'",
+                       str(my_score), str(their_score)])+
+            ") returned " + "'" + real_result + "'" +
+            " and should have returned '" + result + "'")
+        return False
+
+if __name__ == '__main__':
+     
+    # Test 1: Betray on first move.
+    if test_move(my_history='',
+              their_history='', 
+              my_score=0,
+              their_score=0,
+              result='b'):
+         print 'Test passed'
+     # Test 2: Continue betraying if they collude despite being betrayed.
+    test_move(my_history='bbb',
+              their_history='ccc', 
+              # Note the scores are for testing move().
+              # The history and scores don't need to match unless
+              # that is relevant to the test of move(). Here,
+              # the simulation (if working correctly) would have awarded 
+              # 300 to me and -750 to them. This test will pass if and only if
+              # move('bbb', 'ccc', 0, 0) returns 'b'.
+              my_score=0, 
+              their_score=0,
+              result='b')             --------------------------------------------------------------------------------
+team7--------------------------------------------------------------------------------
+####
+#Names: Sean and Phil
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'c' or 'b'
+####
+
+team_name = 'Harambe 7' # Only 10 chars displayed.
+strategy_name = 'Winning Strategy'
+strategy_description = 'Based off of opponents patterns.'
+def move(my_history, their_history, my_score, their_score):
+    if len(my_history) ==0:
+        return 'c'
+    if len(my_history) ==1:
+        return 'c'
+    if len(my_history) ==2:
+        return 'b'
+    if len(my_history) ==3:
+        return 'c'
+    if len(my_history) ==4:
+        return 'b'
+    if their_history[0:5]=='cccbc':
+        return 'c'    
+  
+    if len(my_history) <= 7: 
+        return 'c' 
+    elif len(my_history) <= 10:
+       return 'b' 
+    elif len(my_history) >= 11:
+        if their_history[-6:]=='cccbbb':#copying strat
+            return 'c'  
+        elif their_history[-6:]=='bbbbbb':#betray strat
+            return 'b'
+        elif their_history[-6:]=='cccccc':#always collude
+            return 'b'
+        elif their_history[-6:]=='bcbcbc':#alternating strat 1
+            return 'b'
+        elif their_history[-6:]=='cbcbcb':#alternating strat 2
+            return 'b'
+    else:
+        return 'b'
+    
+    # my_history: a string with one letter (c or b) per round that has been played with this opponent.
+    # their_history: a string of the same length as history, possibly empty. 
+    # The first round between these two players is my_history[0] and their_history[0].
+    # The most recent round is my_history[-1] and their_history[-1].
+    
+    # Analyze my_history and their_history and/or my_score and their_score.
+    # Decide whether to return 'c' or 'b'.
+    
+    
+
+    
+def test_move(my_history, their_history, my_score, their_score, result):
+    '''calls move(my_history, their_history, my_score, their_score)
+    from this module. Prints error if return value != result.
+    Returns True or False, dpending on whether result was as expected.
+    '''
+    real_result = move(my_history, their_history, my_score, their_score)
+    if real_result == result:
+        return True
+    else:
+        print("move(" +
+            ", ".join(["'"+my_history+"'", "'"+their_history+"'",
+                       str(my_score), str(their_score)])+
+            ") returned " + "'" + real_result + "'" +
+            " and should have returned '" + result + "'")
+        return False
+
+if __name__ == '__main__':
+     
+    # Test 1: Betray on first move.
+    if test_move(my_history='',
+              their_history='', 
+              my_score=0,
+              their_score=0,
+              result='b'):
+         print 'Test passed'
+     # Test 2: Continue betraying if they collude despite being betrayed.
+    test_move(my_history='bbb',
+              their_history='ccc', 
+              # Note the scores are for testing move().
+              # The history and scores don't need to match unless
+              # that is relevant to the test of move(). Here,
+              # the simulation (if working correctly) would have awarded 
+              # 300 to me and -750 to them. This test will pass if and only if
+              # move('bbb', 'ccc', 0, 0) returns 'b'.
+              my_score=0, 
+              their_score=0,
+              result='b')             --------------------------------------------------------------------------------
+team8--------------------------------------------------------------------------------
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'c' or 'b'
+####
+#Zoey and Haley's sweet strategy, let's go
+team_name = 'Magnifico8' # Only 10 chars displayed.
+strategy_name = 'Do what chu gotta do'
+strategy_description = 'First round - collude. If they collude in last 2 rounds, collude. If they betray in last 2 rounds, betray. If alternating, betray. If other, collude.'
+    
+def move(my_history, their_history, my_score, their_score):
+    ''' Arguments accepted: my_history, their_history are strings.
+    my_score, their_score are ints.'''
+    if len(my_history)<1:
+        return 'c'
+    elif 'cc' in their_history[-2:]:
+        return 'c'
+    elif 'bb' in their_history[-2:]:
+        return 'b'
+    elif 'cbc' in their_history[-3:]:
+        return 'b'
+    elif 'bcb' in their_history[-3:]:
+        return 'b'
+    else:
+        return 'c'
+
+    
+def test_move(my_history, their_history, my_score, their_score, result):
+    '''calls move(my_history, their_history, my_score, their_score)
+    from this module. Prints error if return value != result.
+    Returns True or False, depending on whether result was as expected.
+    '''
+    real_result = move(my_history, their_history, my_score, their_score)
+    if real_result == result:
+        return True
+    else:
+        print("move(" +
+            ", ".join(["'"+my_history+"'", "'"+their_history+"'",
+                       str(my_score), str(their_score)])+
+            ") returned " + "'" + real_result + "'" +
+            " and should have returned '" + result + "'")
+        return False
+
+if __name__ == '__main__':
+     
+    # Test 1: Betray on first move.
+    if test_move(my_history='',
+              their_history='', 
+              my_score=0,
+              their_score=0,
+              result='b'):
+         print 'Test passed'
+     # Test 2: Continue betraying if they collude despite being betrayed.
+    test_move(my_history='bbb',
+              their_history='ccc', 
+              # Note the scores are for testing move().
+              # The history and scores don't need to match unless
+              # that is relevant to the test of move(). Here,
+              # the simulation (if working correctly) would have awarded 
+              # 300 to me and -750 to them. This test will pass if and only if
+              # move('bbb', 'ccc', 0, 0) returns 'b'.
+              my_score=0, 
+              their_score=0,
+              result='b')             --------------------------------------------------------------------------------
+team9--------------------------------------------------------------------------------
+####
+# Names: Cory Smith & Brian Sadowitz
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'c' or 'b'
+####
+
+team_name = '09 Bagels' # Only 10 chars displayed.
+strategy_name = 'No Forgiveness'
+strategy_description = 'You will regret your betrayal. The guilty pay the price.'
+    
+def move(my_history, their_history, my_score, their_score):
+    if 'b' in their_history:
+        return 'b'
+    else:
+        return 'c'--------------------------------------------------------------------------------
+Section 3 - Game Data for Team Team0: REM
+--------------------------------------------------------------------------------
+-247 pt/round: Team0: REM(P0) "TOP SECRET"
+-247 pt/round: SO LIT(P1) "Chill but agressive"
+CCBcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCcBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-242 pt/round: Team0: REM(P0) "TOP SECRET"
+-249 pt/round: haramBAEs(P2) "build a wall"
+CCBCBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCcCcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-248 pt/round: Team0: REM(P0) "TOP SECRET"
+-248 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+CcBcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+C cBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-244 pt/round: Team0: REM(P0) "TOP SECRET"
+-250 pt/round: Trumpence(P4) "making America great again"
+cCBCBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+BCcCccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-257 pt/round: Team0: REM(P0) "TOP SECRET"
+-241 pt/round: Fünf(P5) "We tried"
+ccbcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+BBbBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-489 pt/round: Team0: REM(P0) "TOP SECRET"
+92 pt/round: TotalLegit(P6) "Win"
+CCBcBccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+CCcBcBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+cccccccccccccccccccccccccccccccc
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+--------------------------------------------------------------------------------
+-241 pt/round: Team0: REM(P0) "TOP SECRET"
+-250 pt/round: Harambe 7(P7) "Winning Strategy"
+CCbCbBBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCbCbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-240 pt/round: Team0: REM(P0) "TOP SECRET"
+-246 pt/round: Magnifico8(P8) "Do what chu gotta do"
+CCBCbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCcCbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-247 pt/round: Team0: REM(P0) "TOP SECRET"
+-247 pt/round: 09 Bagels(P9) "No Forgiveness"
+CCBcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCcBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team SO LIT
+--------------------------------------------------------------------------------
+-247 pt/round: SO LIT(P1) "Chill but agressive"
+-247 pt/round: Team0: REM(P0) "TOP SECRET"
+CCcBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCBcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+0 pt/round: SO LIT(P1) "Chill but agressive"
+0 pt/round: haramBAEs(P2) "build a wall"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-2 pt/round: SO LIT(P1) "Chill but agressive"
+-2 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+CcCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+C CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-248 pt/round: SO LIT(P1) "Chill but agressive"
+-251 pt/round: Trumpence(P4) "making America great again"
+cBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+Bccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-253 pt/round: SO LIT(P1) "Chill but agressive"
+-247 pt/round: Fünf(P5) "We tried"
+cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+0 pt/round: SO LIT(P1) "Chill but agressive"
+0 pt/round: TotalLegit(P6) "Win"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-241 pt/round: SO LIT(P1) "Chill but agressive"
+-251 pt/round: Harambe 7(P7) "Winning Strategy"
+CCcBbBBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCBcbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+0 pt/round: SO LIT(P1) "Chill but agressive"
+0 pt/round: Magnifico8(P8) "Do what chu gotta do"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+0 pt/round: SO LIT(P1) "Chill but agressive"
+0 pt/round: 09 Bagels(P9) "No Forgiveness"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team haramBAEs
+--------------------------------------------------------------------------------
+-249 pt/round: haramBAEs(P2) "build a wall"
+-242 pt/round: Team0: REM(P0) "TOP SECRET"
+CCcCcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCBCBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+0 pt/round: haramBAEs(P2) "build a wall"
+0 pt/round: SO LIT(P1) "Chill but agressive"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-2 pt/round: haramBAEs(P2) "build a wall"
+-2 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+CcCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+C CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCC
+CCCCCC
+
+--------------------------------------------------------------------------------
+-3 pt/round: haramBAEs(P2) "build a wall"
+0 pt/round: Trumpence(P4) "making America great again"
+cCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+BCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-254 pt/round: haramBAEs(P2) "build a wall"
+-245 pt/round: Fünf(P5) "We tried"
+ccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+BBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+0 pt/round: haramBAEs(P2) "build a wall"
+0 pt/round: TotalLegit(P6) "Win"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCC
+CCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-287 pt/round: haramBAEs(P2) "build a wall"
+-172 pt/round: Harambe 7(P7) "Winning Strategy"
+CCcCcBBCccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbcccccccc
+CCBCBccCBBb       BBb       BBb       BBb       BBb       BBb       BBb       BB
+
+bbccccccccbbccccccccbbccc
+b       BBb       BBb    
+
+--------------------------------------------------------------------------------
+0 pt/round: haramBAEs(P2) "build a wall"
+0 pt/round: Magnifico8(P8) "Do what chu gotta do"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+0 pt/round: haramBAEs(P2) "build a wall"
+0 pt/round: 09 Bagels(P9) "No Forgiveness"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team hmm
+--------------------------------------------------------------------------------
+-248 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+-248 pt/round: Team0: REM(P0) "TOP SECRET"
+C cBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CcBcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-2 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+-2 pt/round: SO LIT(P1) "Chill but agressive"
+C CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CcCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-2 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+-2 pt/round: haramBAEs(P2) "build a wall"
+C CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CcCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCC
+CCCCCC
+
+--------------------------------------------------------------------------------
+-102 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+-299 pt/round: Trumpence(P4) "making America great again"
+cBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcB
+BccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBc
+
+BcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBc
+cBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccB
+
+BBcBBcBBcBBcBBcBBcBBcB
+ccBccBccBccBccBccBccBc
+
+--------------------------------------------------------------------------------
+-252 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+-249 pt/round: Fünf(P5) "We tried"
+cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-2 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+-2 pt/round: TotalLegit(P6) "Win"
+C CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CcCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-243 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+-247 pt/round: Harambe 7(P7) "Winning Strategy"
+C cBbBBCcbbb                                                                    
+CcBcbccCBbb                                                                     
+
+                                                               
+                                                               
+
+--------------------------------------------------------------------------------
+-3 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+-3 pt/round: Magnifico8(P8) "Do what chu gotta do"
+C CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CcCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-3 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+-3 pt/round: 09 Bagels(P9) "No Forgiveness"
+C CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CcCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team Trumpence
+--------------------------------------------------------------------------------
+-250 pt/round: Trumpence(P4) "making America great again"
+-244 pt/round: Team0: REM(P0) "TOP SECRET"
+BCcCccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+cCBCBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-251 pt/round: Trumpence(P4) "making America great again"
+-248 pt/round: SO LIT(P1) "Chill but agressive"
+Bccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+cBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+0 pt/round: Trumpence(P4) "making America great again"
+-3 pt/round: haramBAEs(P2) "build a wall"
+BCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+cCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-299 pt/round: Trumpence(P4) "making America great again"
+-102 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+BccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBc
+cBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcB
+
+cBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccBccB
+BcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBcBBc
+
+ccBccBccBccBccBccBccBc
+BBcBBcBBcBBcBBcBBcBBcB
+
+--------------------------------------------------------------------------------
+-252 pt/round: Trumpence(P4) "making America great again"
+-249 pt/round: Fünf(P5) "We tried"
+bcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-247 pt/round: Trumpence(P4) "making America great again"
+-241 pt/round: TotalLegit(P6) "Win"
+BCCccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+cCCBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-290 pt/round: Trumpence(P4) "making America great again"
+-173 pt/round: Harambe 7(P7) "Winning Strategy"
+BCcCcCCCccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbcccccccc
+cCBCBCCCBBb       BBb       BBb       BBb       BBb       BBb       BBb       BB
+
+bbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbcccccc
+b       BBb       BBb       BBb       BBb       BBb       BBb       
+
+--------------------------------------------------------------------------------
+0 pt/round: Trumpence(P4) "making America great again"
+-5 pt/round: Magnifico8(P8) "Do what chu gotta do"
+BCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+cCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-251 pt/round: Trumpence(P4) "making America great again"
+-248 pt/round: 09 Bagels(P9) "No Forgiveness"
+Bccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+cBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team Fünf
+--------------------------------------------------------------------------------
+-241 pt/round: Fünf(P5) "We tried"
+-257 pt/round: Team0: REM(P0) "TOP SECRET"
+BBbBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+ccbcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-247 pt/round: Fünf(P5) "We tried"
+-253 pt/round: SO LIT(P1) "Chill but agressive"
+Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-245 pt/round: Fünf(P5) "We tried"
+-254 pt/round: haramBAEs(P2) "build a wall"
+BBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+ccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-249 pt/round: Fünf(P5) "We tried"
+-252 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-249 pt/round: Fünf(P5) "We tried"
+-252 pt/round: Trumpence(P4) "making America great again"
+bBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-245 pt/round: Fünf(P5) "We tried"
+-254 pt/round: TotalLegit(P6) "Win"
+BBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+cccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-236 pt/round: Fünf(P5) "We tried"
+-261 pt/round: Harambe 7(P7) "Winning Strategy"
+BBbBbBBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+ccbcbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-246 pt/round: Fünf(P5) "We tried"
+-254 pt/round: Magnifico8(P8) "Do what chu gotta do"
+BBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+ccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bb
+bb
+
+--------------------------------------------------------------------------------
+-247 pt/round: Fünf(P5) "We tried"
+-253 pt/round: 09 Bagels(P9) "No Forgiveness"
+Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team TotalLegit
+--------------------------------------------------------------------------------
+92 pt/round: TotalLegit(P6) "Win"
+-489 pt/round: Team0: REM(P0) "TOP SECRET"
+CCcBcBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+CCBcBccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+cccccccccccccccccccccccccccccccc
+
+--------------------------------------------------------------------------------
+0 pt/round: TotalLegit(P6) "Win"
+0 pt/round: SO LIT(P1) "Chill but agressive"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+0 pt/round: TotalLegit(P6) "Win"
+0 pt/round: haramBAEs(P2) "build a wall"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCC
+CCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-2 pt/round: TotalLegit(P6) "Win"
+-2 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+CcCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+C CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-241 pt/round: TotalLegit(P6) "Win"
+-247 pt/round: Trumpence(P4) "making America great again"
+cCCBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+BCCccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-254 pt/round: TotalLegit(P6) "Win"
+-245 pt/round: Fünf(P5) "We tried"
+cccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+BBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+88 pt/round: TotalLegit(P6) "Win"
+-483 pt/round: Harambe 7(P7) "Winning Strategy"
+CCcBcBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+CCBcBccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+ccccccccccccccccccccccccccccccccccccccccccccc
+
+--------------------------------------------------------------------------------
+0 pt/round: TotalLegit(P6) "Win"
+0 pt/round: Magnifico8(P8) "Do what chu gotta do"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCC
+CCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+0 pt/round: TotalLegit(P6) "Win"
+0 pt/round: 09 Bagels(P9) "No Forgiveness"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team Harambe 7
+--------------------------------------------------------------------------------
+-250 pt/round: Harambe 7(P7) "Winning Strategy"
+-241 pt/round: Team0: REM(P0) "TOP SECRET"
+CCbCbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCbCbBBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-251 pt/round: Harambe 7(P7) "Winning Strategy"
+-241 pt/round: SO LIT(P1) "Chill but agressive"
+CCBcbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCcBbBBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-172 pt/round: Harambe 7(P7) "Winning Strategy"
+-287 pt/round: haramBAEs(P2) "build a wall"
+CCBCBccCBBb       BBb       BBb       BBb       BBb       BBb       BBb       BB
+CCcCcBBCccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbcccccccc
+
+b       BBb       BBb    
+bbccccccccbbccccccccbbccc
+
+--------------------------------------------------------------------------------
+-247 pt/round: Harambe 7(P7) "Winning Strategy"
+-243 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+CcBcbccCBbb                                                                     
+C cBbBBCcbbb                                                                    
+
+                                                               
+                                                               
+
+--------------------------------------------------------------------------------
+-173 pt/round: Harambe 7(P7) "Winning Strategy"
+-290 pt/round: Trumpence(P4) "making America great again"
+cCBCBCCCBBb       BBb       BBb       BBb       BBb       BBb       BBb       BB
+BCcCcCCCccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbcccccccc
+
+b       BBb       BBb       BBb       BBb       BBb       BBb       
+bbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbcccccc
+
+--------------------------------------------------------------------------------
+-261 pt/round: Harambe 7(P7) "Winning Strategy"
+-236 pt/round: Fünf(P5) "We tried"
+ccbcbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+BBbBbBBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-483 pt/round: Harambe 7(P7) "Winning Strategy"
+88 pt/round: TotalLegit(P6) "Win"
+CCBcBccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+CCcBcBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+ccccccccccccccccccccccccccccccccccccccccccccc
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+--------------------------------------------------------------------------------
+-177 pt/round: Harambe 7(P7) "Winning Strategy"
+-292 pt/round: Magnifico8(P8) "Do what chu gotta do"
+CCBCbccCBBb       BBb       BBb       BBb       BBb       BBb       BBb       BB
+CCcCbBBCccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbcccccccc
+
+b       BBb       BBb       BBb       BBb       BBb       BBb       BBb       BB
+bbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbcccccccc
+
+b       BBb       BBb   
+bbccccccccbbccccccccbbcc
+
+--------------------------------------------------------------------------------
+-252 pt/round: Harambe 7(P7) "Winning Strategy"
+-238 pt/round: 09 Bagels(P9) "No Forgiveness"
+CCBcbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCcBbBBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team Magnifico8
+--------------------------------------------------------------------------------
+-246 pt/round: Magnifico8(P8) "Do what chu gotta do"
+-240 pt/round: Team0: REM(P0) "TOP SECRET"
+CCcCbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCBCbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+0 pt/round: Magnifico8(P8) "Do what chu gotta do"
+0 pt/round: SO LIT(P1) "Chill but agressive"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+0 pt/round: Magnifico8(P8) "Do what chu gotta do"
+0 pt/round: haramBAEs(P2) "build a wall"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-3 pt/round: Magnifico8(P8) "Do what chu gotta do"
+-3 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+CcCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+C CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-5 pt/round: Magnifico8(P8) "Do what chu gotta do"
+0 pt/round: Trumpence(P4) "making America great again"
+cCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+BCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-254 pt/round: Magnifico8(P8) "Do what chu gotta do"
+-246 pt/round: Fünf(P5) "We tried"
+ccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+BBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bb
+bb
+
+--------------------------------------------------------------------------------
+0 pt/round: Magnifico8(P8) "Do what chu gotta do"
+0 pt/round: TotalLegit(P6) "Win"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCC
+CCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-292 pt/round: Magnifico8(P8) "Do what chu gotta do"
+-177 pt/round: Harambe 7(P7) "Winning Strategy"
+CCcCbBBCccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbcccccccc
+CCBCbccCBBb       BBb       BBb       BBb       BBb       BBb       BBb       BB
+
+bbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbccccccccbbcccccccc
+b       BBb       BBb       BBb       BBb       BBb       BBb       BBb       BB
+
+bbccccccccbbccccccccbbcc
+b       BBb       BBb   
+
+--------------------------------------------------------------------------------
+0 pt/round: Magnifico8(P8) "Do what chu gotta do"
+0 pt/round: 09 Bagels(P9) "No Forgiveness"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team 09 Bagels
+--------------------------------------------------------------------------------
+-247 pt/round: 09 Bagels(P9) "No Forgiveness"
+-247 pt/round: Team0: REM(P0) "TOP SECRET"
+CCcBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCBcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+0 pt/round: 09 Bagels(P9) "No Forgiveness"
+0 pt/round: SO LIT(P1) "Chill but agressive"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+0 pt/round: 09 Bagels(P9) "No Forgiveness"
+0 pt/round: haramBAEs(P2) "build a wall"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-3 pt/round: 09 Bagels(P9) "No Forgiveness"
+-3 pt/round: hmm(P3) "Only Affective 10% of the Time Strategy"
+CcCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+C CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-248 pt/round: 09 Bagels(P9) "No Forgiveness"
+-251 pt/round: Trumpence(P4) "making America great again"
+cBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+Bccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+-253 pt/round: 09 Bagels(P9) "No Forgiveness"
+-247 pt/round: Fünf(P5) "We tried"
+cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+0 pt/round: 09 Bagels(P9) "No Forgiveness"
+0 pt/round: TotalLegit(P6) "Win"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
+-238 pt/round: 09 Bagels(P9) "No Forgiveness"
+-252 pt/round: Harambe 7(P7) "Winning Strategy"
+CCcBbBBBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+CCBcbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+0 pt/round: 09 Bagels(P9) "No Forgiveness"
+0 pt/round: Magnifico8(P8) "Do what chu gotta do"
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--------------------------------------------------------------------------------
