@@ -1,8 +1,8 @@
-#gavin bading & evan parker
+# gavin bading & evan parker
 
-team_name = 'Trumpence' # Only 10 chars displayed.
-strategy_name = 'making America great again'
-strategy_description = 'Be cooperative in the beginning; if betrayed two times, betray back; if betrayed again, keep betraying'
+team_name = 'Octocat' # Only 10 chars displayed.
+strategy_name = 'making GitHub great again'
+strategy_description = 'Be always cooperative, unless if betrayed three times in a row'
     
 def move(my_history, their_history, my_score, their_score):
     # my_history: a string with one letter (c or b) per round that has been played with this opponent.
@@ -15,12 +15,12 @@ def move(my_history, their_history, my_score, their_score):
     
     
     if their_history[-2:] == 'bb':
-        return 'b'
-    elif my_history[-1:] == 'b' and their_history[-2:] == 'bb':
+        return 'c'
+    elif my_history[-1:] == 'c' and their_history[-3:] == 'bbb':
         return 'b'
     elif their_history[-1:] == '':
-        return 'b'
-    elif their_history[-5:] == 'bcbcb':
-        return 'b' 
-    else:
         return 'c'
+    elif their_history[-5:] == 'bcbcb':
+        return 'c' 
+    else:
+        return 'b'
